@@ -37,7 +37,7 @@ On successful login, users are redirected to the homepage.
 
         Stores all the structured data related to countries, states, and cities. This file feeds the dropdown selections and city detail rendering.
 
-**script.js **
+**script.js**
 
 Contains all JavaScript functionality, including:
 
