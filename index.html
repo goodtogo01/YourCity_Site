@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="YourCity - Discover cities around the world with detailed insights." />
+    <meta name="keywords" content="city finder, travel, geography, countries, states, explore" />
+    <meta name="author" content="YourCity Team" />
+
+    <title>YourCity - City Finder</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <script>
+        // Format login time to 12-hour format
+        function formatLoginTime(date) {
+            return new Date(date).toLocaleString("en-US", {
+                month: "numeric",
+                day: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                second: "numeric",
+                hour12: true,
+            });
+        }
+
+        function login() {
+            const username = document.getElementById("username-input").value;
+
+            if (username) {
+                localStorage.setItem("userLoggedIn", "true");
+                localStorage.setItem("username", username);
+
+                // Save formatted login time
+                const loginTimeFormatted = formatLoginTime(new Date());
+                localStorage.setItem("loginTime", loginTimeFormatted);
+
+                window.location.href = "index.html"; // Redirect to main page
+            } else {
+                alert("Please enter your username.");
+            }
+        }
+
+        // Check login status and populate user info
+        function checkAuth() {
+            const userLoggedIn = localStorage.getItem("userLoggedIn");
+            const username = localStorage.getItem("username") || "Guest";
+            const loginTime = localStorage.getItem("loginTime") || "Time not recorded";
+
+            if (!userLoggedIn) {
+                window.location.href = "login.html"; // Redirect to login if not logged in
+            } else {
+                document.getElementById("username").textContent = username;
+                document.getElementById("login-time").textContent = loginTime;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem("userLoggedIn");
+            localStorage.removeItem("username");
+            localStorage.removeItem("loginTime");
+            window.location.href = "login.html";
+        }
+
+        document.addEventListener("DOMContentLoaded", checkAuth);
+    </script>
+</head>
+
+<body>
+    <header class="header">
+        <h1>YourCity 🌍</h1>
+        <p>Explore cities around the world with detailed insights.</p>
+
+        <!-- User Info Display -->
+        <div class="user-info">
+            <p><strong>Logged in as:</strong> <span id="username"></span></p>
+            <p><strong>Login Time:</strong> <span id="login-time"></span></p>
+        </div>
+
+        <!-- Logout Button -->
+        <button onclick="logout()" class="logout-button">Logout</button>
+    </header>
+
+    <div class="main-container">
+        <section class="search-container">
+            <div class="search-box">
+                <h2>Find Your City 🏙️</h2>
+
+                <!-- Country Selection -->
+                <div class="input-group">
+                    <select id="country" onchange="populateStates()">
+                        <option value="">Select Country</option>
+                    </select>
+                </div>
+
+                <!-- State Selection -->
+                <div class="input-group">
+                    <select id="state" onchange="populateCities()">
+                        <option value="">Select State</option>
+                    </select>
+                </div>
+
+                <!-- City Selection -->
+                <div class="input-group">
+                    <select id="city" onchange="showCityInfo()">
+                        <option value="">Select City</option>
+                    </select>
+                </div>
+
+                <!-- New Search Button -->
+                <button id="new-search-btn" onclick="newSearch()">New Search</button>
+            </div>
+        </section>
+
+        <!-- City Details Section -->
+        <section id="city-info" class="city-info-container">
+            <h2>City Details</h2>
+            <div id="city-details" style="display: none;">
+                <p><strong>Country:</strong> <span id="selected-country"></span></p>
+                <p><strong>State:</strong> <span id="selected-state"></span></p>
+                <p><strong>City:</strong> <span id="selected-city"></span></p>
+                <p><strong>Description:</strong> <span id="selected-city-description"></span></p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 YourCity. All rights reserved.</p>
+    </footer>
+
+    <!-- Include Data and Script Files -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

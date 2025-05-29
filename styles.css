@@ -1,0 +1,282 @@
+/* === Global Styles === */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0a0a0a;
+    background-image: radial-gradient(circle at 20% 30%, rgba(0, 255, 231, 0.05), transparent 60%),
+                      radial-gradient(circle at 80% 70%, rgba(106, 0, 255, 0.05), transparent 60%),
+                      linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="2" fill="%23333" /></svg>');
+    opacity: 0.4;
+    z-index: -1;
+    animation: backgroundMove 60s linear infinite;
+}
+
+@keyframes backgroundMove {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(-80px, -80px);
+    }
+}
+
+/* === Header Section === */
+.header {
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 4px 25px rgba(0, 255, 255, 0.3);
+    border: 2px solid rgba(0, 255, 255, 0.2);
+    border-radius: 20px;
+    margin: 30px auto;
+    max-width: 700px;
+    backdrop-filter: blur(6px);
+}
+
+.header h1 {
+    font-size: 3rem;
+    background: linear-gradient(45deg, #00ffe7, #6a00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+/* === Main Layout === */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    padding: 10px;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+/* === Search Box === */
+.search-container {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.search-box {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 20px;
+    border: 2px solid #00ffe7;
+    width: 100%;
+    box-shadow: 0px 6px 25px rgba(0, 255, 255, 0.2);
+}
+
+.search-box h2 {
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #00ffe7;
+}
+
+/* === Input Fields === */
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #00ffe7;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-color: #ff00f7;
+    box-shadow: 0px 0px 8px rgba(255, 0, 247, 0.6);
+}
+
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.input-group input:valid ~ label {
+    top: 10px;
+    font-size: 12px;
+    color: #ff00f7;
+}
+
+/* === City Information Box === */
+.city-info-container {
+    flex: 1.5;
+    margin-left: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #6a00ff;
+    box-shadow: 0px 4px 20px rgba(106, 0, 255, 0.3);
+}
+
+.city-info-container h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #6a00ff;
+}
+
+#city-details {
+    text-align: left;
+    font-size: 18px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+/* === Login Section === */
+.login-body {
+    background: linear-gradient(135deg, #000000, #111111);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0px 6px 20px rgba(255, 0, 255, 0.2);
+    max-width: 400px;
+    border: 2px solid #00ffe7;
+    width: 100%;
+    text-align: center;
+}
+
+.login-container:hover {
+    transform: scale(1.02);
+    transition: 0.2s ease-in-out;
+}
+
+/* === Login Button === */
+.login-btn {
+    background-color: #00ffe7;
+    color: black;
+    border: none;
+    padding: 14px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 100%;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+}
+
+.login-btn:hover {
+    background-color: #ff00f7;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* === Error Message === */
+.error-message {
+    color: #ff4d4d;
+    font-size: 18px;
+    margin-top: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.error-message.active {
+    opacity: 1;
+}
+
+/* === Logout Button === */
+.logout-button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #ff0000;
+}
+
+/* === Footer === */
+.footer {
+    text-align: center;
+    padding: 12px;
+    background-color: #111;
+    color: #bbb;
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+/* === New Search Button === */
+#new-search-btn {
+    background-color: #6a00ff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    box-shadow: 0px 4px 16px rgba(106, 0, 255, 0.3);
+    transition: 0.3s ease;
+}
+
+#new-search-btn:hover {
+    background-color: #00ffe7;
+    color: #000;
+    box-shadow: 0px 8px 20px rgba(0, 255, 231, 0.4);
+    transform: translateY(-4px);
+}
+
+#new-search-btn:active {
+    transform: scale(0.97);
+}
+
+/* === Mobile Responsiveness === */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .search-container,
+    .city-info-container {
+        margin: 0;
+    }
+
+    #new-search-btn {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}

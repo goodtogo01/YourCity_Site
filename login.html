@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | YourCity</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <h2>Welcome to <span>YourCity</span></h2>
+        <p class="subtitle">Discover your dream city with ease.</p>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="username" required>
+                <label>Username</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" required>
+                <label>Password</label>
+            </div>
+
+            <button type="submit" class="login-btn">Login</button>
+            <p id="error-message" class="error-message" style="color: red; display: none;"></p> <!-- Error message -->
+            <p class="subtitle">Username: admin</p>
+            <p class="subtitle">Password: adm123</p>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginForm = document.getElementById("loginForm");
+            const errorMessage = document.getElementById("error-message"); // Error message reference
+
+            if (loginForm) {
+                loginForm.addEventListener("submit", function (event) {
+                    event.preventDefault(); // Prevent page reload
+
+                    // Get input values
+                    const username = document.getElementById("username").value.trim();
+                    const password = document.getElementById("password").value.trim();
+
+                    // Dummy authentication (replace with actual authentication logic)
+                    if (username === "admin" && password === "adm123") {
+                        localStorage.setItem("userLoggedIn", "true"); // Store login status
+                        localStorage.setItem("username", username); // Store username
+                        localStorage.setItem("loginTime", new Date().toLocaleString()); // Store login time
+
+                        window.location.href = "index.html"; // Redirect to main page
+                    } else {
+                        // Show error message
+                        errorMessage.style.display = "block";
+                        errorMessage.classList.add("active");
+                        errorMessage.textContent = "Invalid username or password!";
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
